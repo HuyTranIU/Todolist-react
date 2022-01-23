@@ -6,12 +6,12 @@ TodoList.propTypes = {
 
 function TodoList(props) {
 
-    const { todoList } = props;
+    const { todoList, handleIsCheckAll, isCheckAll } = props;
 
     return (
         <div className="main">
-            <input className="toggle-all" />
-            <label htmlFor="toggle-all"></label>
+            <input className="toggle-all" type="checkbox" checked={isCheckAll} />
+            <label htmlFor="toggle-all" onClick={handleIsCheckAll}></label>
             <ul className="todo-list">
                 {todoList.map((todo, index) => <Todo key={todo.id} {...{ todo }} {...props} index={index} />)}
             </ul>

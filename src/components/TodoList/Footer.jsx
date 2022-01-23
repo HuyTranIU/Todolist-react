@@ -2,44 +2,53 @@ import React from 'react';
 
 
 function Footer(props) {
+    const { status, handleStatusChange, clearCompleted, numOfTodos, numOfTodosLeft } = props;
+    
     const filterBtns = [
         {
             title: 'All',
-            isActive: true,
+            isActive: status === 'All',
             link: '',
+            
         },
         {
             title: 'Active',
-            isActive: false,
+            isActive: status === 'Active',
             link: 'active',
+            
         },
         {
             title: 'Completed',
-            isActive: false,
+            isActive: status === 'Completed',
             link: 'completed',
+            
         },
     ]
 
     return (
         <div className="footer">
             <span className="todo-count">
-                <strong>1 item</strong>
+                <strong>{numOfTodos} </strong>
                 <span></span>
-                <span></span>
+                <span>items </span>
                 <span>left</span>
             </span>
             <ul className="filters">
                 {filterBtns.map((btn, indx) => (
-                    <FillerBtn key={indx} {...btn} />
+                    <FillerBtn 
+                    key={indx} 
+                    {...btn} 
+                    onClick={() => handleStatusChange(btn.title)}
+                    />
                 ))}
             </ul>
-            <button className="clear-completed">Clear completed</button>
+            {numOfTodos > numOfTodosLeft && <button className="clear-completed" onClick={clearCompleted}>Clear completed</button>}
         </div>
     );
 }
 
 function FillerBtn(props) {
-    const {title, onClick, link, isActive} = props;
+    const { title, onClick, link, isActive } = props;
 
     return (
         <>
