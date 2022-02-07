@@ -46,7 +46,10 @@ function App() {
   }
 
   const markComplete = (id) => {
-    const updatedList = todoList.map(todo => todo.id === id ? ({ ...todo, completed: !todo.completed }) : todo)
+    const updatedList = todoList.map(todo => 
+      todo.id === id 
+      ? ({ ...todo, completed: !todo.completed }) 
+      : todo)
     setTodoList(updatedList)
     setIsCheckAll(isNotCheckAll(updatedList))
   }
@@ -82,7 +85,9 @@ function App() {
 
   const clearCompleted = (status) => {
     setTodoList(filterTodoList(todoList, 'Active'));
+    console.log('status', status);
   }
+
 
   return (
     <div className="todoapp">
